@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11612.150 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBroker.Api", "EBroker.Api\EBroker.Api.csproj", "{A2E9B338-BBD2-47BD-A1D6-8E63F9938237}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBroker.Api.Tests", "EBroker.Api.Tests\EBroker.Api.Tests.csproj", "{C8BB49C9-0437-44AE-81D9-64C07851C060}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2E9B338-BBD2-47BD-A1D6-8E63F9938237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2E9B338-BBD2-47BD-A1D6-8E63F9938237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2E9B338-BBD2-47BD-A1D6-8E63F9938237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2E9B338-BBD2-47BD-A1D6-8E63F9938237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8BB49C9-0437-44AE-81D9-64C07851C060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8BB49C9-0437-44AE-81D9-64C07851C060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8BB49C9-0437-44AE-81D9-64C07851C060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8BB49C9-0437-44AE-81D9-64C07851C060}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {931FB8CA-9CC9-49D5-BA69-FA0163FFDEE2}
+	EndGlobalSection
+EndGlobal
