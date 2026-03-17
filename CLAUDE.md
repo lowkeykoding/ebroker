@@ -33,11 +33,18 @@ Buying agents can view public listings and submit offers without an account.
 ## Angular Architecture
 
 ### Guiding Principles
-- Signals are the primary reactive primitive — use `signal()`, `computed()`, and `effect()` 
+- Signals are the primary reactive primitive — use `signal()`, `computed()`, and `effect()`
 - Avoid RxJS unless specifically needed (e.g. `forkJoin` for parallel HTTP calls)
 - Standalone components only — never use NgModules
 - Functional guards only — never class-based guards
 - All components are `standalone: true` by default (configured in angular.json schematics)
+- No separate `.css` files — all styling is handled via Tailwind CSS utility classes
+- `inlineStyle: true` is set in angular.json so the CLI never generates `.css` files
+
+### Template Strategy
+- **All components always use a separate `.html` file** — no exceptions
+  - Generated with `templateUrl: './component-name.component.html'`
+- **No component ever has a separate `.css` file** — Tailwind handles all styling
 
 ---
 
@@ -232,7 +239,9 @@ ngOnInit() {
   "schematics": {
     "@schematics/angular:component": {
       "type": "component",
-      "standalone": true
+      "standalone": true,
+      "inlineStyle": true,
+      "inlineTemplate": false
     },
     "@schematics/angular:guard": {
       "functional": true
@@ -246,6 +255,9 @@ ngOnInit() {
   }
 }
 ```
+
+- `inlineStyle: true` — never generate a `.css` file, Tailwind handles all styling
+- `inlineTemplate: false` — always generate a separate `.html` file
 
 ---
 
@@ -612,6 +624,9 @@ mentally execute the chain? If yes, the LINQ is fine. If no, break it up.
 - NEVER make HTTP calls inside child components
 - NEVER use NgModules — standalone components only
 - NEVER use class-based guards — functional guards only
+- NEVER generate or use separate `.css` files — Tailwind only
+- NEVER use inline templates — all components always use a separate `.html` file
+- NEVER generate or use separate `.css` files — Tailwind only
 - ALWAYS use signals for state, computed() for derived state
 - ALWAYS place child components in a `components/` subfolder within the page folder
 - ALWAYS derive stats and counts from existing signals using computed() rather than extra API calls
