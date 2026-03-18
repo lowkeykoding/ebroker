@@ -627,6 +627,10 @@ mentally execute the chain? If yes, the LINQ is fine. If no, break it up.
 - NEVER generate or use separate `.css` files — Tailwind only
 - NEVER use inline templates — all components always use a separate `.html` file
 - NEVER generate or use separate `.css` files — Tailwind only
+- NEVER use arrow functions in Angular templates — Angular does not support them and will throw an error
+  - Wrong: `(click)="mobileMenuOpen.update(v => !v)"`
+  - Right: call a named method on the component class instead `(click)="toggleMobileMenu()"`
+  - Any logic that would be an arrow function in the template must be a named method in the component class
 - ALWAYS use signals for state, computed() for derived state
 - ALWAYS place child components in a `components/` subfolder within the page folder
 - ALWAYS derive stats and counts from existing signals using computed() rather than extra API calls
