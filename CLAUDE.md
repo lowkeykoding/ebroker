@@ -41,6 +41,50 @@ Buying agents can view public listings and submit offers without an account.
 - No separate `.css` files — all styling is handled via Tailwind CSS utility classes
 - `inlineStyle: true` is set in angular.json so the CLI never generates `.css` files
 
+### Spartan UI CLI
+Spartan UI components must be added using the Spartan CLI — never hand-write
+brain or helm files manually. The CLI installs the brain primitive from npm
+and copies the helm styles into the project automatically.
+
+**Install the CLI (already done — do not reinstall):**
+```bash
+npm i -D @spartan-ng/cli
+```
+
+**Set up theme (already done once — do not run again):**
+```bash
+ng g @spartan-ng/cli:ui-theme
+```
+
+**Add a Spartan UI component:**
+```bash
+ng g @spartan-ng/cli:ui
+```
+The CLI will prompt you to select which component(s) to add.
+You can also specify the component directly:
+```bash
+ng g @spartan-ng/cli:ui --name=button
+ng g @spartan-ng/cli:ui --name=dialog
+ng g @spartan-ng/cli:ui --name=table
+```
+
+**Available Spartan UI components:**
+accordion, alert, alert-dialog, aspect-ratio, autocomplete, avatar, badge,
+breadcrumb, button, button-group, calendar, card, carousel, checkbox,
+collapsible, combobox, command, context-menu, data-table, date-picker,
+dialog, dropdown-menu, empty, field, form-field, hover-card, icon,
+input-group, input-otp, input, item, kbd, label, menubar, native-select,
+navigation-menu, pagination, popover, progress, radio-group, resizable,
+scroll-area, select, separator, sheet, sidebar, skeleton, slider, sonner,
+spinner, switch, table, tabs, textarea, toggle, toggle-group, tooltip
+
+**Rules:**
+- ALWAYS use the CLI to add Spartan UI components — never write brain/helm files by hand
+- After adding a component via CLI, import the helm directives/components from the
+  copied helm files in your project, not from npm
+- Brain primitives (`brn-` prefix) come from npm — import from `@spartan-ng/brain/...`
+- Helm components (`hlm-` prefix) come from copied files — import from your local `ui/` folder
+
 ### Template Strategy
 - **All components always use a separate `.html` file** — no exceptions
   - Generated with `templateUrl: './component-name.component.html'`
@@ -628,6 +672,7 @@ mentally execute the chain? If yes, the LINQ is fine. If no, break it up.
 - NEVER use inline templates — all components always use a separate `.html` file
 - NEVER generate or use separate `.css` files — Tailwind only
 - NEVER use arrow functions in Angular templates — Angular does not support them and will throw an error
+- NEVER hand-write Spartan UI brain or helm files — always use `ng g @spartan-ng/cli:ui` to add components
   - Wrong: `(click)="mobileMenuOpen.update(v => !v)"`
   - Right: call a named method on the component class instead `(click)="toggleMobileMenu()"`
   - Any logic that would be an arrow function in the template must be a named method in the component class
