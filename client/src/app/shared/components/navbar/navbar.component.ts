@@ -1,13 +1,17 @@
-import { Component, ElementRef, HostListener, signal } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import type { User } from '@supabase/supabase-js';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: 'navbar.component.html'
+  templateUrl: 'navbar.component.html',
 })
 export class NavbarComponent {
+  @Input() user: User | null = null;
+  @Output() signOutClicked = new EventEmitter<void>();
+
   dropdownOpen = signal<boolean>(false);
   mobileMenuOpen = signal<boolean>(false);
 
@@ -24,10 +28,4 @@ export class NavbarComponent {
       this.dropdownOpen.set(false);
     }
   }
-
-  logout(): void {
-    console.log('logout');
-  }
-
-  protected readonly Boolean = Boolean;
 }

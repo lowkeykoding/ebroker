@@ -1,1 +1,82 @@
-<p>Login page</p>
+<div class="flex min-h-screen">
+  <!-- Left panel: form -->
+  <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+    <div class="mx-auto w-full max-w-sm lg:w-96">
+
+      <!-- Brand -->
+      <div>
+        <span class="text-2xl font-bold text-indigo-600">EBroker</span>
+        <h2 class="mt-8 text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
+      </div>
+
+      <!-- Form -->
+      <div class="mt-10">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
+
+          <div>
+            <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
+            <div class="mt-2">
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                autocomplete="email"
+                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+            <div class="mt-2">
+              <input
+                id="password"
+                type="password"
+                formControlName="password"
+                autocomplete="current-password"
+                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end">
+            <div class="text-sm/6">
+              <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+            </div>
+          </div>
+
+          @if (error()) {
+            <div class="rounded-md bg-red-50 p-4">
+              <p class="text-sm text-red-700">{{ error() }}</p>
+            </div>
+          }
+
+          <div>
+            <button
+              type="submit"
+              [disabled]="loading()"
+              class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              @if (loading()) {
+                Signing in...
+              } @else {
+                Sign in
+              }
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Right panel: background image -->
+  <div class="relative hidden w-0 flex-1 lg:block">
+    <img
+      src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
+      alt=""
+      class="absolute inset-0 size-full object-cover"
+    />
+  </div>
+</div>
