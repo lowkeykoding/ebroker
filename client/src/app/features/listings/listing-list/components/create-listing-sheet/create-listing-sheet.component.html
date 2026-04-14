@@ -1,0 +1,309 @@
+<div id="create-listing-sheet" aria-labelledby="create-listing-sheet-title"
+     class="fixed inset-0 size-auto max-h-none max-w-none overflow-hidden bg-stone-200/50 backdrop:backdrop-blur-2xl">
+  <div tabindex="0" class="absolute inset-0 pl-10 focus:outline-none sm:pl-16">
+    <div
+      class="ml-auto block size-full max-w-5xl transform transition duration-500 ease-in-out data-closed:translate-x-full sm:duration-700">
+      <form class="relative flex h-full flex-col overflow-y-auto bg-white shadow-xl">
+        <div class="flex-1">
+          <!-- Header -->
+          <div class="mx-4 py-6 sm:mx-6 border-b border-stone-900/20">
+            <div class="flex items-start justify-between space-x-3">
+              <div class="space-y-1">
+                <h2 id="create-listing-sheet-title" class="text-xl font-semibold text-stone-950">New Listing</h2>
+                <p class="text-sm text-stone-800">Get started by filling in the information below to create your new
+                  project.</p>
+              </div>
+              <div class="flex h-7 items-center">
+                <button type="button" command="close" commandfor="create-listing-sheet"
+                        class="relative rounded-md text-gray-400 hover:text-gray-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  <span class="absolute -inset-2.5"></span>
+                  <span class="sr-only">Close panel</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                       aria-hidden="true" class="size-6">
+                    <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-12 pl-6 pr-8 mt-6">
+
+            <!-- Property Details section -->
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+              <div>
+                <h2 class="text-base/7 font-semibold text-gray-900">Property Information</h2>
+                <p class="mt-1 text-sm/6 text-gray-600">Use a permanent address where you can receive mail.</p>
+              </div>
+
+              <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 md:col-span-2">
+
+                <div class="col-span-full">
+                  <label for="street-address" class="label">Street address</label>
+                  <div class="mt-1">
+                    <input id="street-address" type="text" name="street-address" autocomplete="street-address"
+                           class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2 sm:col-start-1">
+                  <label for="city" class="label">City</label>
+                  <div class="mt-1">
+                    <input id="city" type="text" name="city" autocomplete="address-level2" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="region" class="label">State / Province</label>
+                  <div class="mt-1">
+                    <input id="region" type="text" name="region" autocomplete="address-level1" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="postal-code" class="label">ZIP / Postal code</label>
+                  <div class="mt-1">
+                    <input id="postal-code" type="text" name="postal-code" autocomplete="postal-code" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="country" class="label">Property Type</label>
+                  <div class="mt-1 grid grid-cols-1">
+                    <select id="country" name="country" autocomplete="country-name"
+                            class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>Mexico</option>
+                    </select>
+                    <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true"
+                         class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4">
+                      <path
+                        d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                        clip-rule="evenodd" fill-rule="evenodd"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="last-name" class="label">Year Built</label>
+                  <div class="mt-1">
+                    <input id="last-name" type="text" name="last-name" autocomplete="family-name" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-1">
+                  <label for="email" class="label">Bedrooms</label>
+                  <div class="mt-1">
+                    <input id="email" type="email" name="email" autocomplete="email" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-1">
+                  <label for="first-name" class="label">Bathrooms</label>
+                  <div class="mt-1">
+                    <input id="first-name" type="text" name="first-name" autocomplete="given-name" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="first-name" class="label">Square Footage</label>
+                  <div class="mt-1">
+                    <input id="first-name" type="text" name="first-name" autocomplete="given-name" class="input"/>
+                  </div>
+                </div>
+
+                <div class="col-span-full">
+                  <label for="cover-photo" class="label">Property Photos</label>
+                  <div class="mt-1 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                    <div class="text-center">
+                      <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true"
+                           class="mx-auto size-12 text-gray-300">
+                        <path
+                          d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
+                          clip-rule="evenodd" fill-rule="evenodd"/>
+                      </svg>
+                      <div class="mt-4 flex text-sm/6 text-gray-600">
+                        <label for="file-upload"
+                               class="relative cursor-pointer rounded-md bg-white font-semibold text-sky-600 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-sky-600 hover:text-sky-500">
+                          <span>Upload a file</span>
+                          <input id="file-upload" type="file" name="file-upload" class="sr-only"/>
+                        </label>
+                        <p class="pl-1">or drag and drop</p>
+                      </div>
+                      <p class="text-xs/5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Listing Details section -->
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+              <div>
+                <h2 class="text-base/7 font-semibold text-gray-900">Listing Information</h2>
+                <p class="mt-1 text-sm/6 text-gray-600">Use a permanent address where you can receive mail.</p>
+              </div>
+
+              <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 md:col-span-2">
+
+                <div class="col-span-full">
+                  <label for="street-address" class="label">MLS Number</label>
+                  <div class="mt-1">
+                    <input id="street-address" type="text" name="street-address" autocomplete="street-address"
+                           class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2 sm:col-start-1">
+                  <label for="city" class="label">List Price</label>
+                  <div class="mt-1">
+                    <input id="city" type="text" name="city" autocomplete="address-level2" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="country" class="label">Status</label>
+                  <div class="mt-1 grid grid-cols-1">
+                    <select id="country" name="country" autocomplete="country-name"
+                            class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                      @for (status of listingStatuses(); track $index){
+                        <option value="{{ status.id }}">{{ status.label }}</option>
+                      }
+                    </select>
+                    <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true"
+                         class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4">
+                      <path
+                        d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                        clip-rule="evenodd" fill-rule="evenodd"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="postal-code" class="label">Offer Deadline</label>
+                  <div class="mt-1">
+                    <input id="postal-code" type="text" name="postal-code" autocomplete="postal-code" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="last-name" class="label">Listing Expiration Date</label>
+                  <div class="mt-1">
+                    <input id="last-name" type="text" name="last-name" autocomplete="family-name" class="input"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seller Information section -->
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+              <div>
+                <h2 class="text-base/7 font-semibold text-gray-900">Seller Information</h2>
+                <p class="mt-1 text-sm/6 text-gray-600">Use a permanent address where you can receive mail.</p>
+              </div>
+
+              <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 md:col-span-2">
+                <div class="sm:col-span-3">
+                  <label for="first-name" class="label">First name</label>
+                  <div class="mt-1">
+                    <input id="first-name" type="text" name="first-name" autocomplete="given-name" class="input"/>
+                  </div>
+                </div>
+                <div class="sm:col-span-3">
+                  <label for="last-name" class="label">Last name</label>
+                  <div class="mt-1">
+                    <input id="last-name" type="text" name="last-name" autocomplete="family-name" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-4">
+                  <label for="email" class="label">Email address</label>
+                  <div class="mt-1">
+                    <input id="email" type="email" name="email" autocomplete="email" class="input"/>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2 sm:col-start-1">
+                  <label for="city" class="label">Phone Number</label>
+                  <div class="mt-1">
+                    <input id="city" type="text" name="city" autocomplete="address-level2" class="input"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notes section -->
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+              <div>
+                <h2 class="text-base/7 font-semibold text-gray-900">Personal Notes</h2>
+                <p class="mt-1 text-sm/6 text-gray-600">This information will be displayed publicly so be careful what
+                  you share.</p>
+              </div>
+
+              <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 md:col-span-2">
+
+                <div class="col-span-full">
+                  <label for="about" class="label">Notes</label>
+                  <div class="mt-1">
+                    <textarea id="about" name="about" rows="3" class="input"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Documents section -->
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+              <div>
+                <h2 class="text-base/7 font-semibold text-gray-900">Listing Documents</h2>
+                <p class="mt-1 text-sm/6 text-gray-600">This information will be displayed publicly so be careful what
+                  you share.</p>
+              </div>
+
+              <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 md:col-span-2">
+
+                <div class="col-span-full">
+                  <label for="cover-photo" class="label">Documents</label>
+                  <div class="mt-1 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                    <div class="text-center">
+                      <svg viewBox="0 0 24 24" fill="currentColor" data-slot="icon" aria-hidden="true"
+                           class="mx-auto size-12 text-gray-300">
+                        <path
+                          d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
+                          clip-rule="evenodd" fill-rule="evenodd"/>
+                      </svg>
+                      <div class="mt-4 flex text-sm/6 text-gray-600">
+                        <label for="file-upload"
+                               class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-600 hover:text-indigo-500">
+                          <span>Upload a file</span>
+                          <input id="file-upload" type="file" name="file-upload" class="sr-only"/>
+                        </label>
+                        <p class="pl-1">or drag and drop</p>
+                      </div>
+                      <p class="text-xs/5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="shrink-0 px-4 py-5 sm:px-6">
+          <div class="flex justify-end space-x-3">
+            <button type="button" command="close" commandfor="create-listing-sheet"
+                    class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50">
+              Cancel
+            </button>
+            <button type="submit"
+                    class="inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+              Create
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

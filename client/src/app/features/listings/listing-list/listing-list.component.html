@@ -1,3 +1,47 @@
-<h1 pageTitle class="text-3xl font-bold tracking-tight text-gray-900">Listings</h1>
-<p>Listings page</p>
+<div pageTitle class="flex items-center justify-between mb-8">
+  <div>
+    <h1 class="text-3xl font-bold tracking-tight text-gray-900">Listings</h1>
+    <p class="mt-1 text-sm text-gray-500">Manage your property listings</p>
+  </div>
+  <button
+    type="button"
+    class="block rounded-md bg-sky-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+  >
+    Create Listing
+  </button>
+</div>
 
+@if (loading()) {
+  <div class="flex items-center justify-center py-12">
+    <div class="text-sm text-gray-500">Loading listings...</div>
+  </div>
+} @else if (error()) {
+  <div class="rounded-md bg-red-50 p-4 mb-6">
+    <p class="text-sm text-red-700">{{ error() }}</p>
+  </div>
+} @else {
+<!--    <app-listing-stats-bar-->
+<!--        [listings]="listings()"-->
+<!--      ></app-listing-stats-bar>-->
+
+  <div class="mt-6">
+    <app-listing-filters
+      [listingStatuses]="allListingStatuses()"
+      (statusFilterChange)="onStatusFilterChange($event)"
+      (searchChange)="onSearchChange($event)"
+    ></app-listing-filters>
+  </div>
+
+  <div class="mt-6">
+    <app-listing-table
+      [searchTerm]="searchTerm()"
+      [listings]="listings()"
+      [statusFilter]="statusFilter()"
+    ></app-listing-table>
+
+  </div>
+}
+
+<app-create-listing-sheet #createSheet
+                          [listingStatuses]="listingStatuses()"
+                          (listingCreated)="onListingCreated($event)" />

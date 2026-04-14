@@ -1,0 +1,89 @@
+<dl class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+  <!-- Total Active -->
+  <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-sm sm:px-6 sm:pt-6">
+    <dt>
+      <div class="absolute rounded-md bg-indigo-500 p-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+      </div>
+      <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Active</p>
+    </dt>
+    <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+      <p class="text-2xl font-semibold text-gray-900">{{ activeCount }}</p>
+      <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+        <div class="text-sm">
+          <button type="button" (click)="onViewAll('active')" class="font-medium text-indigo-600 hover:text-indigo-500">
+            View all<span class="sr-only"> active listings</span>
+          </button>
+        </div>
+      </div>
+    </dd>
+  </div>
+
+  <!-- Total Offers Received -->
+  <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-sm sm:px-6 sm:pt-6">
+    <dt>
+      <div class="absolute rounded-md bg-indigo-500 p-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+      </div>
+      <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Offers Received</p>
+    </dt>
+    <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+      <p class="text-2xl font-semibold text-gray-900">{{ totalOffersReceived }}</p>
+      <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+        <div class="text-sm">
+          <button type="button" (click)="onViewAll('all')" class="font-medium text-indigo-600 hover:text-indigo-500">
+            View all<span class="sr-only"> listings with offers</span>
+          </button>
+        </div>
+      </div>
+    </dd>
+  </div>
+
+  <!-- Expiring Soon -->
+  <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-sm sm:px-6 sm:pt-6">
+    <dt>
+      <div class="absolute rounded-md bg-indigo-500 p-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+      </div>
+      <p class="ml-16 truncate text-sm font-medium text-gray-500">Expiring Soon</p>
+    </dt>
+    <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+      <p class="text-2xl font-semibold text-gray-900">{{ expiringSoonCount }}</p>
+      <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+        <div class="text-sm">
+          <button type="button" (click)="onViewAll('active')" class="font-medium text-indigo-600 hover:text-indigo-500">
+            View all<span class="sr-only"> expiring listings</span>
+          </button>
+        </div>
+      </div>
+    </dd>
+  </div>
+
+  <!-- No Offers Yet -->
+  <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-sm sm:px-6 sm:pt-6">
+    <dt>
+      <div class="absolute rounded-md bg-indigo-500 p-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+      </div>
+      <p class="ml-16 truncate text-sm font-medium text-gray-500">No Offers Yet</p>
+    </dt>
+    <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+      <p class="text-2xl font-semibold text-gray-900">{{ noOffersCount }}</p>
+      <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+        <div class="text-sm">
+          <button type="button" (click)="onViewAll('active')" class="font-medium text-indigo-600 hover:text-indigo-500">
+            View all<span class="sr-only"> listings with no offers</span>
+          </button>
+        </div>
+      </div>
+    </dd>
+  </div>
+</dl>
