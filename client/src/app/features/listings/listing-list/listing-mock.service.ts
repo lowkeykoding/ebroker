@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import {Listing, ListingStatus} from '../../../core/models/listing.model';
+import {Listing, ListingStatus, PropertyType} from '../../../core/models/listing.model';
 
 @Injectable({ providedIn: 'root' })
 export class ListingMockService {
@@ -200,5 +200,16 @@ export class ListingMockService {
     ];
 
     return of(listingStatuses);
+  }
+
+  getPropertyTypes(): Observable<PropertyType[]> {
+    const propertyTypes: PropertyType[] = [
+      { id: 1, label: 'Single Family'},
+      { id: 2, label: 'Condo'},
+      { id: 3, label: 'Townhouse'},
+      { id: 4, label: 'Multi Family'},
+    ];
+
+    return of(propertyTypes);
   }
 }

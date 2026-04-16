@@ -1,0 +1,17 @@
+<label [for]="id()" class="label">
+  {{ label() }}
+  @if (required()) {
+    <span class="text-rose-600"> *</span>
+  }
+</label>
+<div class="mt-1">
+  <input [id]="id()" [type]="type()" [name]="id()" [formControl]="control()" class="input"
+         [attr.autocomplete]="autocomplete()"/>
+</div>
+@if (control().invalid && control().touched) {
+  @for (entry of errorEntries; track entry.key) {
+    @if (control().hasError(entry.key)) {
+      <p class="mt-1 text-sm text-red-600">{{ entry.message }}</p>
+    }
+  }
+}

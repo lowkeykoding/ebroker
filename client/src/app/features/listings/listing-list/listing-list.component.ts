@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, computed, inject, signal } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import {Listing, ListingStatus} from '../../../core/models/listing.model';
+import {Listing, ListingStatus, PropertyType} from '../../../core/models/listing.model';
 import { ListingMockService } from './listing-mock.service';
 import {ListingStats, ListingStatsBarComponent} from './components/listing-stats-bar/listing-stats-bar.component';
 import { ListingFiltersComponent } from './components/listing-filters/listing-filters.component';
@@ -23,6 +23,7 @@ export class ListingListComponent implements OnInit {
 
   listings = signal<Listing[]>([]);
   listingStatuses = signal<ListingStatus[]>([]);
+  propertyTypes = signal<PropertyType[]>([]);
   allListingStatuses = signal<ListingStatus[]>([]);
   statusFilter = signal<number>(0);
   searchTerm = signal<string>('');
@@ -34,10 +35,12 @@ export class ListingListComponent implements OnInit {
     forkJoin({
       listings: this.listingService.getListings(),
       listingStatuses: this.listingService.getListingStatuses(),
+      propertyTypes: this.listingService.getPropertyTypes(),
     }).subscribe({
-      next: ({ listings, listingStatuses }) => {
+      next: ({ listings, listingStatuses, propertyTypes }) => {
         this.listings.set(listings);
         this.listingStatuses.set(listingStatuses)
+        this.propertyTypes.set(propertyTypes)
         this.allListingStatuses.set([{ id: 0, label: 'All' }, ...listingStatuses])
         this.loading.set(false);
       },

@@ -25,3 +25,8 @@ export interface ListingStatus {
   id: number;
   label: string;
 }
+
+export interface PropertyType {
+  id: number;
+  label: string;
+}
