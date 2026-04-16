@@ -98,14 +98,14 @@
   }
 </div>
 
+@if (files().length > 0) {
 <div class="mt-5 flex justify-end gap-2">
-  @if (files().length > 0) {
     <button type="button" (click)="removeAll()"
             class="cursor-pointer rounded-md bg-white px-2.5 py-1.5 text-xs font-medium text-rose-600 shadow-xs inset-ring inset-ring-rose-200 hover:bg-rose-50">
       Remove all
     </button>
-  }
 </div>
+}
 
 @if (error()) {
   <p class="mt-2 text-xs text-rose-600">{{ error() }}</p>

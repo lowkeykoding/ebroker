@@ -39,12 +39,12 @@ export interface CreateListingFormValue {
 }
 
 @Component({
-  selector: 'app-create-listing-sheet',
+  selector: 'app-create-listing-drawer',
   standalone: true,
   imports: [ReactiveFormsModule, FileUploadComponent, FormFieldComponent, FormSelectComponent],
-  templateUrl: 'create-listing-sheet.component.html',
+  templateUrl: 'create-listing-drawer.component.html',
 })
-export class CreateListingSheetComponent {
+export class CreateListingDrawerComponent {
   listingStatuses = input.required<ListingStatus[]>();
   propertyTypes = input.required<PropertyType[]>();
   listingCreated = output<CreateListingFormValue>();
@@ -125,5 +125,9 @@ export class CreateListingSheetComponent {
       propertyImages: this.propertyImages(),
       documents: this.documents(),
     });
+  }
+
+  onCancel(): void {
+    this.form.reset();
   }
 }

@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewChild, computed, inject, signal } from '@angular/core';
+import {Component, OnInit, inject, signal, input} from '@angular/core';
 import { forkJoin } from 'rxjs';
 import {Listing, ListingStatus, PropertyType} from '../../../core/models/listing.model';
 import { ListingMockService } from './listing-mock.service';
-import {ListingStats, ListingStatsBarComponent} from './components/listing-stats-bar/listing-stats-bar.component';
 import { ListingFiltersComponent } from './components/listing-filters/listing-filters.component';
 import { ListingTableComponent } from './components/listing-table/listing-table.component';
-import { CreateListingSheetComponent } from './components/create-listing-sheet/create-listing-sheet.component';
-import {BrnSheet} from '@spartan-ng/brain/sheet';
+import { CreateListingDrawerComponent } from './components/create-listing-sheet/create-listing-drawer.component';
+import {DrawerComponent} from '../../../shared/components/drawer/drawer.component';
 
 @Component({
   selector: 'app-listing-list',
@@ -15,7 +14,8 @@ import {BrnSheet} from '@spartan-ng/brain/sheet';
     //ListingStatsBarComponent,
     ListingFiltersComponent,
     ListingTableComponent,
-    CreateListingSheetComponent,
+    CreateListingDrawerComponent,
+    DrawerComponent,
   ],
   templateUrl: 'listing-list.component.html',
 })
