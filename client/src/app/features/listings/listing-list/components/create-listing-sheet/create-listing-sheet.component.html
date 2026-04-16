@@ -136,6 +136,7 @@
                       accept=".png,.jpg,.jpeg,.webp"
                       hint="PNG, JPG, WebP up to 10MB"
                       errorMessage="Some files were not uploaded. They were either larger than 10MB or an unsupported type. Only PNG, JPG, and WebP are allowed."
+                      [isImages]="true"
                       [allowPrimarySelection]="true"
                       (filesChange)="onPropertyImagesChanged($event)"/>
                   </div>

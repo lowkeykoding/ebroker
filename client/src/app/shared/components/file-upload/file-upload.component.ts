@@ -16,6 +16,7 @@ export class FileUploadComponent {
   accept = input.required<string>();
   hint = input.required<string>();
   errorMessage = input.required<string>();
+  isImages = input<boolean>(false);
   allowPrimarySelection = input<boolean>(false);
 
   filesChange = output<UploadedFile[]>();

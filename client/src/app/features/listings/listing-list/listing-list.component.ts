@@ -6,6 +6,7 @@ import {ListingStats, ListingStatsBarComponent} from './components/listing-stats
 import { ListingFiltersComponent } from './components/listing-filters/listing-filters.component';
 import { ListingTableComponent } from './components/listing-table/listing-table.component';
 import { CreateListingSheetComponent } from './components/create-listing-sheet/create-listing-sheet.component';
+import {BrnSheet} from '@spartan-ng/brain/sheet';
 
 @Component({
   selector: 'app-listing-list',
