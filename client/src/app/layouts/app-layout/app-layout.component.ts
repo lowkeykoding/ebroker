@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import { SupabaseService } from '../../core/services/supabase.service';
-import {routes} from '../../app.routes';
-import {SvgComponent} from '../../shared/components/svg/svg.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { routes } from '../../app.routes';
+import { SvgComponent } from '../../shared/components/svg/svg.component';
 
 @Component({
   selector: 'app-app-layout',
@@ -11,16 +11,13 @@ import {SvgComponent} from '../../shared/components/svg/svg.component';
   templateUrl: 'app-layout.component.html',
 })
 export class AppLayoutComponent {
-  private supabaseService = inject(SupabaseService);
-  private router = inject(Router);
+  private authService = inject(AuthService);
 
-  // Signal reference — template reads user() to get current value
-  user = this.supabaseService.currentUser;
+  user = this.authService.currentUser;
 
-  async onSignOut(): Promise<void> {
-    await this.supabaseService.signOut();
-    this.router.navigateByUrl('/auth/login');
+  onSignOut(): void {
+    this.authService.logout();
   }
 
-  protected readonly sidebarRoutes = routes.at(0)?.children?.filter(route => route.title) ?? [];
+  protected readonly sidebarRoutes = routes.find(r => r.path === '')?.children?.filter(route => route.title) ?? [];
 }

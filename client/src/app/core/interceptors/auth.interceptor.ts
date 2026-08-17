@@ -1,25 +1,14 @@
 import { HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { from, switchMap } from 'rxjs';
-import { SupabaseService } from '../services/supabase.service';
+import { AuthService } from '../services/auth.service';
 
-export const authInterceptor: HttpInterceptorFn = (
-  req: HttpRequest<unknown>,
-  next: HttpHandlerFn
-) => {
-  const supabaseService = inject(SupabaseService);
+export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
+  const authService = inject(AuthService);
+  const token = authService.getAccessToken();
 
-  return from(supabaseService.getSession()).pipe(
-    switchMap(session => {
-      if (session?.access_token) {
-        const authReq = req.clone({
-          setHeaders: {
-            Authorization: `Bearer ${session.access_token}`,
-          },
-        });
-        return next(authReq);
-      }
-      return next(req);
-    })
-  );
+  if (token) {
+    return next(req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }));
+  }
+
+  return next(req);
 };

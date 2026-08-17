@@ -5,34 +5,35 @@ import { authGuard } from './core/guards/auth.guard';
 import { guestGuard } from './core/guards/guest.guard';
 
 export const routes: Routes = [
-  // {
-  //   path: 'auth',
-  //   component: AuthLayoutComponent,
-  //   canActivate: [guestGuard],
-  //   children: [
-  //     {
-  //       path: 'login',
-  //       loadComponent: () =>
-  //         import('./features/auth/login/login.component').then(m => m.LoginComponent),
-  //     },
-  //   ],
-  // },
+  {
+    path: 'auth',
+    component: AuthLayoutComponent,
+    canActivate: [guestGuard],
+    children: [
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./features/auth/login/login.component').then(m => m.LoginComponent),
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./features/auth/register/register.component').then(m => m.RegisterComponent),
+      },
+    ],
+  },
   {
     path: '',
     component: AppLayoutComponent,
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full', },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         loadComponent: () =>
-          import('./features/dashboard/dashboard.component').then(
-            m => m.DashboardComponent
-          ),
+          import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
         title: 'Dashboard',
-        data: {
-          svg: 'dashboard'
-        }
+        data: { svg: 'dashboard' },
       },
       {
         path: 'listings',
@@ -41,9 +42,7 @@ export const routes: Routes = [
             m => m.ListingListComponent
           ),
         title: 'Listings',
-        data: {
-          svg: 'house'
-        }
+        data: { svg: 'house' },
       },
       {
         path: 'offers',
@@ -52,11 +51,9 @@ export const routes: Routes = [
             m => m.OfferListComponent
           ),
         title: 'Offers',
-        data: {
-          svg: 'offer'
-        }
+        data: { svg: 'offer' },
       },
     ],
   },
-  { path: '**', redirectTo: '/dashboard' },
+  { path: '**', redirectTo: '/auth/login' },
 ];

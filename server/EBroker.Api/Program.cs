@@ -38,6 +38,15 @@ builder.Services.AddCors(options =>
     });
 });
 
+// ── Supabase auth HTTP client ─────────────────────────────────────────────────
+builder.Services.AddHttpClient("SupabaseAuth", client =>
+{
+    var supabaseUrl = builder.Configuration["Supabase:Url"]!;
+    var anonKey = builder.Configuration["Supabase:AnonKey"]!;
+    client.BaseAddress = new Uri($"{supabaseUrl}/auth/v1/");
+    client.DefaultRequestHeaders.Add("apikey", anonKey);
+});
+
 // ── MediatR ───────────────────────────────────────────────────────────────────
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));

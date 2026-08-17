@@ -1,17 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SupabaseService } from '../../../core/services/supabase.service';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: 'login.component.html',
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
-  private supabaseService = inject(SupabaseService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   form = this.fb.nonNullable.group({
@@ -29,14 +29,13 @@ export class LoginComponent {
     this.error.set(null);
 
     const { email, password } = this.form.getRawValue();
-    const { error } = await this.supabaseService.signIn(email, password);
 
-    if (error) {
-      this.error.set(error.message);
+    try {
+      await this.authService.login(email, password);
+      this.router.navigateByUrl('/listings');
+    } catch {
+      this.error.set('Invalid email or password.');
       this.loading.set(false);
-      return;
     }
-
-    this.router.navigateByUrl('/listings');
   }
 }
