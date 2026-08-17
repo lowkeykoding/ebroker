@@ -8,13 +8,15 @@ import {
   FlexRenderDirective,
   SortingState,
 } from '@tanstack/angular-table';
-import {Listing, ListingStatus} from '../../../../../core/models/listing.model';
+import {ListingModel, ListingStatusModel} from '../../../../../core/models/listing.model';
+import {IconComponent} from '../../../../../shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-listing-table',
   standalone: true,
   imports: [
-    FlexRenderDirective
+    FlexRenderDirective,
+    IconComponent
   ],
   templateUrl: 'listing-table.component.html',
 })
@@ -22,7 +24,7 @@ export class ListingTableComponent {
   private readonly usd = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 0});
 
   // Inputs
-  listings = input.required<Listing[]>();
+  listings = input.required<ListingModel[]>();
   searchTerm = input.required<string>();
   statusFilter = input.required<number>();
 
@@ -36,14 +38,14 @@ export class ListingTableComponent {
   sorting = signal<SortingState>([]);
 
   // Table
-  columns: ColumnDef<Listing>[] = [
-    {
-      id: 'checkbox',
-      enableSorting: false,
-      header: '',
-      cell: (info) => '',
-      size: 30
-    },
+  columns: ColumnDef<ListingModel>[] = [
+    // {
+    //   id: 'checkbox',
+    //   enableSorting: false,
+    //   header: '',
+    //   cell: (info) => '',
+    //   size: 30
+    // },
     {
       id: 'address',
       accessorFn: (row) => `${row.address}, ${row.city}, ${row.state} ${row.zipCode}`,
@@ -58,9 +60,9 @@ export class ListingTableComponent {
       id: 'status',
       accessorKey: 'status',
       header: 'Status',
-      cell: (info) => (info.getValue() as ListingStatus)?.label,
+      cell: (info) => (info.getValue() as ListingStatusModel)?.label,
       filterFn: (row, columnId, filterValue) =>
-        (row.getValue(columnId) as ListingStatus).id === filterValue,
+        (row.getValue(columnId) as ListingStatusModel).id === filterValue,
       sortingFn: (rowA, rowB, columnId) => rowA.original.status.id - rowB.original.status.id
     },
     {
@@ -89,15 +91,15 @@ export class ListingTableComponent {
       accessorKey: 'mlsNumber',
       header: 'MLS #',
     },
-    // {
-    //   id: 'actions',
-    //   enableSorting: false,
-    //   header: '',
-    //   cell: () => null,
-    // },
+    {
+      id: 'actions',
+      enableSorting: false,
+      header: '',
+      cell: (info) => info
+    },
   ];
 
-  table = createAngularTable<Listing>(() => ({
+  table = createAngularTable<ListingModel>(() => ({
     data: this.listings(),
     columns: this.columns,
     getCoreRowModel: getCoreRowModel(),
@@ -136,17 +138,17 @@ export class ListingTableComponent {
   getStatusBadgeClass(status: number): string {
     switch (status) {
       case 1:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-200 text-gray-950';
       case 2:
-        return 'bg-emerald-100 text-emerald-800';
+        return 'bg-emerald-200 text-emerald-950';
       case 3:
-        return 'bg-amber-100 text-amber-800';
+        return 'bg-amber-200 text-amber-950';
       case 4:
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-200 text-blue-950';
       case 5:
-        return 'bg-purple-100 text-purple-800';
+        return 'bg-purple-200 text-purple-950';
       default:
-        return 'bg-rose-100 text-rose-800';
+        return 'bg-rose-200 text-rose-950';
     }
   }
 
@@ -164,15 +166,11 @@ export class ListingTableComponent {
     navigator.clipboard.writeText(text);
   }
 
-  onViewListing(listing: Listing): void {
+  onViewListing(listing: ListingModel): void {
     console.log('View listing:', listing.id);
   }
 
-  onCopyLink(listing: Listing): void {
-    this.copyToClipboard(listing.publicLink);
-  }
-
-  onDeleteListing(listing: Listing): void {
+  onDeleteListing(listing: ListingModel): void {
     console.log('Delete listing:', listing.id);
   }
 

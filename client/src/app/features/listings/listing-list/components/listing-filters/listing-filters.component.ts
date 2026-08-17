@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter, signal, input} from '@angular/core';
-import {ListingStatus} from '../../../../../core/models/listing.model';
+import {ListingStatusModel} from '../../../../../core/models/listing.model';
+import {isActive} from '@angular/router';
 
 interface FilterOption {
   label: string;
@@ -15,7 +16,7 @@ interface FilterOption {
 export class ListingFiltersComponent {
   @Output() statusFilterChange = new EventEmitter<number>();
   @Output() searchChange = new EventEmitter<string>();
-  listingStatuses = input.required<ListingStatus[]>();
+  listingStatuses = input.required<ListingStatusModel[]>();
 
   currentFilter = signal<number>(0);
 

@@ -1,16 +1,16 @@
 <label [for]="id()" class="label">
   {{ label() }}
-  @if (required()) {
+  @if (field()().required()) {
     <span class="text-rose-600"> *</span>
   }
 </label>
 <div class="mt-1">
-  <input [id]="id()" [type]="type()" [name]="id()" [formControl]="control()" class="input"
+  <input [id]="id()" [type]="type()" [formField]="field()" class="input"
          [attr.autocomplete]="autocomplete()"/>
 </div>
-@if (control().invalid && control().touched) {
+@if (field()().invalid() && field()().touched()) {
   @for (entry of errorEntries; track entry.key) {
-    @if (control().hasError(entry.key)) {
+    @if (hasError(entry.key)) {
       <p class="mt-1 text-sm text-red-600">{{ entry.message }}</p>
     }
   }

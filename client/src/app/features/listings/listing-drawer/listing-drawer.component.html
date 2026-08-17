@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formRoot]="listingForm">
 
     <div class="flex-1 space-y-6 pl-6 pr-8 mt-4">
 
@@ -14,47 +14,43 @@
 
           <div class="col-span-full">
             <app-form-field
-              [control]="form.controls.address"
+              [field]="listingForm.address"
               label="Street address"
               id="address"
               autocomplete="street-address"
-              [required]="true"
               [errors]="{ required: 'Street address is required.' }"/>
           </div>
 
           <div class="sm:col-span-2 sm:col-start-1">
             <app-form-field
-              [control]="form.controls.city"
+              [field]="listingForm.city"
               label="City"
               id="city"
               autocomplete="address-level2"
-              [required]="true"
               [errors]="{ required: 'City is required.' }"/>
           </div>
 
           <div class="sm:col-span-2">
             <app-form-field
-              [control]="form.controls.state"
+              [field]="listingForm.state"
               label="State / Province"
               id="state"
               autocomplete="address-level1"
-              [required]="true"
               [errors]="{ required: 'State is required.' }"/>
           </div>
 
           <div class="sm:col-span-2">
             <app-form-field
-              [control]="form.controls.zipCode"
+              [field]="listingForm.zipCode"
               label="ZIP / Postal code"
               id="zipCode"
               autocomplete="postal-code"
-              [required]="true"
               [errors]="{ required: 'ZIP code is required.' }"/>
           </div>
 
           <div class="sm:col-span-2">
             <app-form-select
-              [control]="form.controls.propertyType"
+              [field]="listingForm.propertyType"
               label="Property Type"
               id="propertyType"
               [options]="propertyTypeOptions()"/>
@@ -62,57 +58,38 @@
 
           <div class="sm:col-span-2">
             <app-form-field
-              [control]="form.controls.yearBuilt"
+              [field]="listingForm.yearBuilt"
               label="Year Built"
               id="yearBuilt"
               type="number"
-              [required]="true"
               [errors]="{ required: 'Year built is required.' }"/>
           </div>
 
           <div class="sm:col-span-1">
             <app-form-field
-              [control]="form.controls.bedrooms"
+              [field]="listingForm.bedrooms"
               label="Bedrooms"
               id="bedrooms"
               type="number"
-              [required]="true"
               [errors]="{ required: 'Required.' }"/>
           </div>
 
           <div class="sm:col-span-1">
             <app-form-field
-              [control]="form.controls.bathrooms"
+              [field]="listingForm.bathrooms"
               label="Bathrooms"
               id="bathrooms"
               type="number"
-              [required]="true"
               [errors]="{ required: 'Required.' }"/>
           </div>
 
           <div class="sm:col-span-2">
             <app-form-field
-              [control]="form.controls.squareFootage"
+              [field]="listingForm.squareFootage"
               label="Square Footage"
               id="squareFootage"
               type="number"
-              [required]="true"
               [errors]="{ required: 'Square footage is required.' }"/>
-          </div>
-
-          <div class="col-span-full">
-            <label class="label">Property Photos</label>
-            <div class="mt-1">
-              <app-file-upload
-                [allowedTypes]="allowedImageTypes"
-                [maxSizeBytes]="maxImageSizeBytes"
-                accept=".png,.jpg,.jpeg,.webp"
-                hint="PNG, JPG, WebP up to 10MB"
-                errorMessage="Some files were not uploaded. They were either larger than 10MB or an unsupported type. Only PNG, JPG, and WebP are allowed."
-                [isImages]="true"
-                [allowPrimarySelection]="true"
-                (filesChange)="onPropertyImagesChanged($event)"/>
-            </div>
           </div>
         </div>
       </div>
@@ -128,36 +105,33 @@
 
           <div class="col-span-full">
             <app-form-field
-              [control]="form.controls.mlsNumber"
+              [field]="listingForm.mlsNumber"
               label="MLS Number"
               id="mlsNumber"
-              [required]="true"
               [errors]="{ required: 'MLS number is required.' }"/>
           </div>
 
           <div class="sm:col-span-2 sm:col-start-1">
             <app-form-field
-              [control]="form.controls.listPrice"
+              [field]="listingForm.listPrice"
               label="List Price"
               id="listPrice"
               type="number"
-              [required]="true"
               [errors]="{ required: 'List price is required.' }"/>
           </div>
 
           <div class="sm:col-span-2">
             <app-form-select
-              [control]="form.controls.status"
+              [field]="listingForm.status"
               label="Status"
               id="status"
               [options]="listingStatusOptions()"
-              [required]="true"
               errorMessage="Status is required."/>
           </div>
 
           <div class="sm:col-span-2">
             <app-form-field
-              [control]="form.controls.offerDeadline"
+              [field]="listingForm.offerDeadline"
               label="Offer Deadline"
               id="offerDeadline"
               type="date"/>
@@ -165,7 +139,7 @@
 
           <div class="sm:col-span-2">
             <app-form-field
-              [control]="form.controls.listingExpiration"
+              [field]="listingForm.listingExpiration"
               label="Listing Expiration Date"
               id="listingExpiration"
               type="date"/>
@@ -183,38 +157,35 @@
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 md:col-span-2">
           <div class="sm:col-span-3">
             <app-form-field
-              [control]="form.controls.sellerFirstName"
+              [field]="listingForm.sellerFirstName"
               label="First name"
               id="sellerFirstName"
               autocomplete="given-name"
-              [required]="true"
               [errors]="{ required: 'First name is required.' }"/>
           </div>
 
           <div class="sm:col-span-3">
             <app-form-field
-              [control]="form.controls.sellerLastName"
+              [field]="listingForm.sellerLastName"
               label="Last name"
               id="sellerLastName"
               autocomplete="family-name"
-              [required]="true"
               [errors]="{ required: 'Last name is required.' }"/>
           </div>
 
           <div class="sm:col-span-4">
             <app-form-field
-              [control]="form.controls.sellerEmail"
+              [field]="listingForm.sellerEmail"
               label="Email address"
               id="sellerEmail"
               type="email"
               autocomplete="email"
-              [required]="true"
               [errors]="{ required: 'Email is required.', email: 'Enter a valid email address.' }"/>
           </div>
 
           <div class="sm:col-span-2 sm:col-start-1">
             <app-form-field
-              [control]="form.controls.sellerPhone"
+              [field]="listingForm.sellerPhone"
               label="Phone Number"
               id="sellerPhone"
               autocomplete="tel"/>
@@ -233,14 +204,14 @@
           <div class="col-span-full">
             <label for="notes" class="label">Notes</label>
             <div class="mt-1">
-              <textarea id="notes" name="notes" rows="3" formControlName="notes" class="input"></textarea>
+              <textarea id="notes" rows="3" [formField]="listingForm.notes" class="input"></textarea>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Documents section -->
-      <div class="grid grid-cols-1 gap-6 pb-10 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-6 border-b border-gray-900/10 pb-10 md:grid-cols-3">
         <div>
           <h2 class="text-base/7 font-semibold text-gray-900">Documents
           </h2>
@@ -258,6 +229,32 @@
                 hint="PDF up to 25MB"
                 errorMessage="Some files were not uploaded. They were either larger than 25MB or an unsupported type. Only PDF files are allowed."
                 (filesChange)="onDocumentsChanged($event)"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Property Images section -->
+      <div class="grid grid-cols-1 gap-6 pb-10 md:grid-cols-3">
+        <div>
+          <h2 class="text-base/7 font-semibold text-gray-900">Property Images</h2>
+          <p class="mt-1 text-sm/6 text-gray-600">Upload photos of the property and choose which one is the primary image which will appear first.
+          </p>
+        </div>
+
+        <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6 md:col-span-2">
+          <div class="col-span-full">
+            <label class="label">Property Photos</label>
+            <div class="mt-1">
+              <app-file-upload
+                [allowedTypes]="allowedImageTypes"
+                [maxSizeBytes]="maxImageSizeBytes"
+                accept=".png,.jpg,.jpeg,.webp"
+                hint="PNG, JPG, WebP up to 10MB"
+                errorMessage="Some files were not uploaded. They were either larger than 10MB or an unsupported type. Only PNG, JPG, and WebP are allowed."
+                [isImages]="true"
+                [allowPrimarySelection]="true"
+                (filesChange)="onPropertyImagesChanged($event)"/>
             </div>
           </div>
         </div>

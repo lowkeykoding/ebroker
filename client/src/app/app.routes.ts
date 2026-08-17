@@ -5,32 +5,58 @@ import { authGuard } from './core/guards/auth.guard';
 import { guestGuard } from './core/guards/guest.guard';
 
 export const routes: Routes = [
-  {
-    path: 'auth',
-    component: AuthLayoutComponent,
-    canActivate: [guestGuard],
-    children: [
-      {
-        path: 'login',
-        loadComponent: () =>
-          import('./features/auth/login/login.component').then(m => m.LoginComponent),
-      },
-    ],
-  },
+  // {
+  //   path: 'auth',
+  //   component: AuthLayoutComponent,
+  //   canActivate: [guestGuard],
+  //   children: [
+  //     {
+  //       path: 'login',
+  //       loadComponent: () =>
+  //         import('./features/auth/login/login.component').then(m => m.LoginComponent),
+  //     },
+  //   ],
+  // },
   {
     path: '',
     component: AppLayoutComponent,
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full', },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./features/dashboard/dashboard.component').then(
+            m => m.DashboardComponent
+          ),
+        title: 'Dashboard',
+        data: {
+          svg: 'dashboard'
+        }
+      },
       {
         path: 'listings',
         loadComponent: () =>
           import('./features/listings/listing-list/listing-list.component').then(
             m => m.ListingListComponent
           ),
+        title: 'Listings',
+        data: {
+          svg: 'house'
+        }
       },
-      { path: '', redirectTo: 'listings', pathMatch: 'full' },
+      {
+        path: 'offers',
+        loadComponent: () =>
+          import('./features/offers/offer-list/offer-list.component').then(
+            m => m.OfferListComponent
+          ),
+        title: 'Offers',
+        data: {
+          svg: 'offer'
+        }
+      },
     ],
   },
-  { path: '**', redirectTo: '/listings' },
+  { path: '**', redirectTo: '/dashboard' },
 ];

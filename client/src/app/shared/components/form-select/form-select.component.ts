@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Field, FormField } from '@angular/forms/signals';
 
 export interface SelectOption {
   value: string | number;
@@ -9,14 +9,13 @@ export interface SelectOption {
 @Component({
   selector: 'app-form-select',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [FormField],
   templateUrl: 'form-select.component.html',
 })
 export class FormSelectComponent {
-  control = input.required<FormControl>();
+  field = input.required<Field<any>>();
   label = input.required<string>();
   id = input.required<string>();
   options = input.required<SelectOption[]>();
-  required = input<boolean>(false);
   errorMessage = input<string | null>(null);
 }

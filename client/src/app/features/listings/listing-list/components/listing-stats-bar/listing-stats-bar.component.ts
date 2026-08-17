@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, input} from '@angular/core';
 import {forkJoin} from 'rxjs';
-import {Listing} from '../../../../../core/models/listing.model';
+import {ListingModel} from '../../../../../core/models/listing.model';
 
 export interface ListingStats {
   activeCount: number;
@@ -17,7 +17,7 @@ export interface ListingStats {
 })
 export class ListingStatsBarComponent {
   @Output() filterSelect = new EventEmitter<string>();
-  listings = input.required<Listing[]>();
+  listings = input.required<ListingModel[]>();
 
   activeCount!: number;
   totalOffersReceived!: number;

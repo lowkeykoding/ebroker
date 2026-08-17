@@ -1,11 +1,17 @@
 import {Component, OnInit, inject, signal, input} from '@angular/core';
 import { forkJoin } from 'rxjs';
-import {Listing, ListingStatus, PropertyType} from '../../../core/models/listing.model';
+import {
+  ListingModel,
+  ListingStatusModel,
+  PropertyTypeModel,
+  UpsertListingModel
+} from '../../../core/models/listing.model';
 import { ListingMockService } from './listing-mock.service';
 import { ListingFiltersComponent } from './components/listing-filters/listing-filters.component';
 import { ListingTableComponent } from './components/listing-table/listing-table.component';
-import { CreateListingDrawerComponent } from './components/create-listing-sheet/create-listing-drawer.component';
+import { ListingDrawerComponent } from '../listing-drawer/listing-drawer.component';
 import {DrawerComponent} from '../../../shared/components/drawer/drawer.component';
+import {PageHeadingComponent} from '../../../shared/components/page-heading/page-heading.component';
 
 @Component({
   selector: 'app-listing-list',
@@ -14,18 +20,19 @@ import {DrawerComponent} from '../../../shared/components/drawer/drawer.componen
     //ListingStatsBarComponent,
     ListingFiltersComponent,
     ListingTableComponent,
-    CreateListingDrawerComponent,
+    ListingDrawerComponent,
     DrawerComponent,
+    PageHeadingComponent,
   ],
   templateUrl: 'listing-list.component.html',
 })
 export class ListingListComponent implements OnInit {
   private listingService = inject(ListingMockService);
 
-  listings = signal<Listing[]>([]);
-  listingStatuses = signal<ListingStatus[]>([]);
-  propertyTypes = signal<PropertyType[]>([]);
-  allListingStatuses = signal<ListingStatus[]>([]);
+  listings = signal<ListingModel[]>([]);
+  listingStatuses = signal<ListingStatusModel[]>([]);
+  propertyTypes = signal<PropertyTypeModel[]>([]);
+  allListingStatuses = signal<ListingStatusModel[]>([]);
   statusFilter = signal<number>(0);
   searchTerm = signal<string>('');
   loading = signal<boolean>(false);
@@ -60,7 +67,16 @@ export class ListingListComponent implements OnInit {
     this.searchTerm.set(term);
   }
 
-  onListingCreated(data: unknown): void {
-    console.log('Listing created:', data);
+  onListingSaved(data: UpsertListingModel): void {
+    this.listingService.upsertListing(data).subscribe({
+      next: (result) => {
+        if (!result.success) {
+          this.error.set(result.errors.join(', '));
+        }
+      },
+      error: () => {
+        this.error.set('Failed to create listing.');
+      },
+    });
   }
 }

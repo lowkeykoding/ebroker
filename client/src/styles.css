@@ -1,6 +1,15 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+}
+
 @layer components {
+  .card {
+    @apply relative overflow-hidden rounded-lg shadow-sm px-4 py-5 z-0 sm:p-6 before:absolute before:inset-0 before:bg-linear-to-r before:from-white/20 before:to-gray-500/20 before:via-gray-200/20 before:-z-20 after:absolute after:inset-px after:bg-white after:rounded-lg after:-z-10 dark:after:bg-gray-800;
+  }
+
   .label {
     @apply block text-sm/6 font-medium text-stone-950;
   }
@@ -10,18 +19,34 @@
   }
 
   button {
-    @apply cursor-pointer;
+    @apply cursor-pointer transition duration-100 ease-in;
   }
 
   .button {
-    @apply rounded-md px-3 py-2 text-sm font-semibold shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2;
+    @apply rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2;
   }
 
   .button-primary {
-    @apply bg-sky-600 text-white hover:bg-sky-500 focus-visible:outline-sky-600;
+    @apply bg-sky-700 text-white hover:bg-sky-600 focus-visible:outline-sky-600;
+  }
+
+  .button-secondary {
+    @apply bg-zinc-300 hover:bg-slate-700 hover:text-white focus-visible:outline-slate-600;
   }
 
   .button-cancel {
     @apply bg-white text-gray-900 inset-ring inset-ring-gray-300 hover:bg-gray-50 focus-visible:outline-gray-300;
+  }
+
+  .button-group {
+    @apply inline-flex rounded-full overflow-hidden;
+
+    .button {
+      @apply rounded-none;
+    }
+
+    .button:not(:last-child) {
+      @apply border-r border-zinc-900/20;
+    }
   }
 }
