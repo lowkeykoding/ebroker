@@ -1,52 +1,131 @@
-@import 'tailwindcss';
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
 
+@import "@spartan-ng/brain/hlm-tailwind-preset.css";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
 }
 
 @layer components {
-  .card {
-    @apply relative overflow-hidden rounded-lg shadow-sm px-4 py-5 z-0 sm:p-6 before:absolute before:inset-0 before:bg-linear-to-r before:from-white/20 before:to-gray-500/20 before:via-gray-200/20 before:-z-20 after:absolute after:inset-px after:bg-white after:rounded-lg after:-z-10 dark:after:bg-gray-800;
-  }
+.card {
+@apply relative overflow-hidden rounded-lg shadow-sm px-4 py-5 z-0 sm:p-6 before:absolute before:inset-0 before:bg-linear-to-r before:from-white/20 before:to-gray-500/20 before:via-gray-200/20 before:-z-20 after:absolute after:inset-px after:bg-white after:rounded-lg after:-z-10 dark:after:bg-gray-800;
+}
 
-  .label {
-    @apply block text-sm/6 font-medium text-stone-950;
-  }
+.label {
+@apply block text-sm/6 font-medium text-stone-950;
+}
 
-  .input {
-    @apply block w-full rounded-md bg-white px-3 py-1.5 text-base text-stone-950 outline-1 -outline-offset-1 outline-stone-300 placeholder:text-stone-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6;
-  }
+.input {
+@apply block w-full rounded-md bg-white px-3 py-1.5 text-base text-stone-950 outline-1 -outline-offset-1 outline-stone-300 placeholder:text-stone-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6;
+}
 
-  button {
-    @apply cursor-pointer transition duration-100 ease-in;
-  }
+button {
+@apply cursor-pointer transition duration-100 ease-in;
+}
 
-  .button {
-    @apply rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2;
-  }
+.button {
+@apply rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2;
+}
 
-  .button-primary {
-    @apply bg-sky-700 text-white hover:bg-sky-600 focus-visible:outline-sky-600;
-  }
+.button-primary {
+@apply bg-sky-700 text-white hover:bg-sky-600 focus-visible:outline-sky-600;
+}
 
-  .button-secondary {
-    @apply bg-zinc-300 hover:bg-slate-700 hover:text-white focus-visible:outline-slate-600;
-  }
+.button-secondary {
+@apply bg-zinc-300 hover:bg-slate-700 hover:text-white focus-visible:outline-slate-600;
+}
 
-  .button-cancel {
-    @apply bg-white text-gray-900 inset-ring inset-ring-gray-300 hover:bg-gray-50 focus-visible:outline-gray-300;
-  }
+.button-cancel {
+@apply bg-white text-gray-900 inset-ring inset-ring-gray-300 hover:bg-gray-50 focus-visible:outline-gray-300;
+}
 
-  .button-group {
-    @apply inline-flex rounded-full overflow-hidden;
+.button-group {
+@apply inline-flex rounded-full overflow-hidden;
 
-    .button {
-      @apply rounded-none;
-    }
+.button {
+@apply rounded-none;
+}
 
-    .button:not(:last-child) {
-      @apply border-r border-zinc-900/20;
-    }
-  }
+.button:not(:last-child) {
+@apply border-r border-zinc-900/20;
+}
+}
+}
+
+
+:root {
+color-scheme: light;
+
+--font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+--radius: 0.625rem;
+--background: oklch(1 0 0);
+--foreground: oklch(0.145 0 0);
+--card: oklch(1 0 0);
+--card-foreground: oklch(0.145 0 0);
+--popover: oklch(1 0 0);
+--popover-foreground: oklch(0.145 0 0);
+--primary: oklch(0.205 0 0);
+--primary-foreground: oklch(0.985 0 0);
+--secondary: oklch(0.97 0 0);
+--secondary-foreground: oklch(0.205 0 0);
+--muted: oklch(0.97 0 0);
+--muted-foreground: oklch(0.556 0 0);
+--accent: oklch(0.97 0 0);
+--accent-foreground: oklch(0.205 0 0);
+--destructive: oklch(0.577 0.245 27.325);
+--border: oklch(0.922 0 0);
+--input: oklch(0.922 0 0);
+--ring: oklch(0.708 0 0);
+--sidebar: oklch(0.985 0 0);
+--sidebar-foreground: oklch(0.145 0 0);
+--sidebar-primary: oklch(0.205 0 0);
+--sidebar-primary-foreground: oklch(0.985 0 0);
+--sidebar-accent: oklch(0.97 0 0);
+--sidebar-accent-foreground: oklch(0.205 0 0);
+--sidebar-border: oklch(0.922 0 0);
+--sidebar-ring: oklch(0.708 0 0);
+}
+
+:root.dark {
+color-scheme: dark;
+
+--background: oklch(0.145 0 0);
+--foreground: oklch(0.985 0 0);
+--card: oklch(0.205 0 0);
+--card-foreground: oklch(0.985 0 0);
+--popover: oklch(0.205 0 0);
+--popover-foreground: oklch(0.985 0 0);
+--primary: oklch(0.922 0 0);
+--primary-foreground: oklch(0.205 0 0);
+--secondary: oklch(0.269 0 0);
+--secondary-foreground: oklch(0.985 0 0);
+--muted: oklch(0.269 0 0);
+--muted-foreground: oklch(0.708 0 0);
+--accent: oklch(0.269 0 0);
+--accent-foreground: oklch(0.985 0 0);
+--destructive: oklch(0.704 0.191 22.216);
+--border: oklch(1 0 0 / 10%);
+--input: oklch(1 0 0 / 15%);
+--ring: oklch(0.556 0 0);
+--sidebar: oklch(0.205 0 0);
+--sidebar-foreground: oklch(0.985 0 0);
+--sidebar-primary: oklch(0.985 0 0);
+--sidebar-primary-foreground: oklch(0.205 0 0);
+--sidebar-accent: oklch(0.269 0 0);
+--sidebar-accent-foreground: oklch(0.985 0 0);
+--sidebar-border: oklch(1 0 0 / 10%);
+--sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+* {
+@apply border-border outline-ring/50;
+}
+body {
+@apply bg-background text-foreground;
+}
 }
