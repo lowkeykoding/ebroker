@@ -2,11 +2,14 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import {HlmField, HlmFieldGroup, HlmFieldLabel} from '@spartan-ng/helm/field';
+import {HlmInput} from '@spartan-ng/helm/input';
+import {HlmButton} from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, HlmField, HlmInput, HlmFieldLabel, HlmFieldGroup, HlmButton],
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
@@ -15,6 +18,8 @@ export class RegisterComponent {
   private router = inject(Router);
 
   form = this.fb.nonNullable.group({
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', Validators.required],
@@ -26,7 +31,7 @@ export class RegisterComponent {
   async onSubmit(): Promise<void> {
     if (this.form.invalid) return;
 
-    const { email, password, confirmPassword } = this.form.getRawValue();
+    const { firstName, lastName, email, password, confirmPassword } = this.form.getRawValue();
 
     if (password !== confirmPassword) {
       this.error.set('Passwords do not match.');
@@ -37,8 +42,8 @@ export class RegisterComponent {
     this.error.set(null);
 
     try {
-      await this.authService.register(email, password);
-      this.router.navigateByUrl('/auth/login');
+      await this.authService.register(firstName, lastName, email, password);
+      await this.router.navigateByUrl('/auth/login');
     } catch (err: unknown) {
       const httpError = err as { error?: { message?: string } };
       this.error.set(httpError?.error?.message ?? 'Registration failed. Please try again.');

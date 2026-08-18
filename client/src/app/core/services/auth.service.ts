@@ -33,9 +33,9 @@ export class AuthService {
     this.storeSession(response);
   }
 
-  async register(email: string, password: string): Promise<void> {
+  async register(firstName: string, lastName: string, email: string, password: string): Promise<void> {
     await firstValueFrom(
-      this.http.post(`${environment.apiUrl}/api/auth/register`, { email, password })
+      this.http.post(`${environment.apiUrl}/api/auth/register`, { firstName, lastName, email, password })
     );
   }
 
